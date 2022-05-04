@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Post
+from .models import Post, People
 
 
 def main_page(request):
@@ -13,3 +13,11 @@ def main_page(request):
     context = {'title': 'HELLO?', 'posts': posts}
 
     return render(request, 'main_page.html', context)
+
+
+def team_page(request):
+    people = People.objects.all()
+
+    context = {'title': 'Team', 'team': people}
+
+    return render(request, 'team_page.html', context)

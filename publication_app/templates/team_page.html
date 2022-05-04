@@ -1,0 +1,13 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% for tm in team %}
+        <h3>{{ tm.name }}</h3>
+        {% if tm.image %}<div><img src="{{ tm.image.url }}" alt="" width="300px" height="300px"></div>{% endif %}
+        <div>{{ tm.role }}</div>
+    {% endfor %}
+</body>
+</html>
