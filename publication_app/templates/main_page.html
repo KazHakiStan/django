@@ -1,13 +1,15 @@
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
 </head>
-<body>
-    {% for post in posts %}
-        <h3>{{ post.title }}</h3>
-        {% if post.image %}<div><img src="{{ post.image.url }}" alt="" width="500px" height="500px"></div>{% endif %}
-        <div>{{ post.text }}</div>
-    {% endfor %}
+<body bgcolor="#696969" background="/media/bg.jpg" style="background-attachment: fixed">
+    <form action="radio/">
+        <p><button>Местное радио</button></p>
+    </form>
+    <form action="team/">
+        <p><button>Команда гениев</button></p>
+    </form>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+</head>
+<body bgcolor="#696969" background="/media/bg.jpg" style="background-attachment: fixed">
+<form action="/">
+        <p><button>Главная</button></p>
+    </form>
+    {% for post in posts %}
+        <h3 style="text-align: center; color: aliceblue;">{{ post.title }}</h3>
+        {% if post.image %}<div><img src="{{ post.image.url }}" alt="" width="500px" height="500px" style="display: block; margin: 0 auto"></div>{% endif %}
+        <div style="text-align: center; color: aliceblue">{{ post.text }}</div>
+    {% endfor %}
+</body>
+</html>
