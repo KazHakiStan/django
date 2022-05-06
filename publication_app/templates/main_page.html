@@ -3,16 +3,85 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <style>
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .navbar a {
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover, .dropdown:hover .dropbtn {
+            background-color: red;
+        }
+        .dropbtn {
+            background-color: rgba(28,28,28,0);
+            color: black;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(28,28,28,0);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        .dropdown .dropbtn {
+            font-size: 16px;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .dropdown-content a:hover {background-color: dimgray;}
+
+        .dropdown:hover .dropdown-content {display: block;}
+    </style>
 </head>
 <body bgcolor="#696969" background="/media/bg.jpg" style="background-attachment: fixed">
-    <form action="radio/">
-        <p><button style="border-radius: 5px; background-color: rgba(28,28,28,0); width: 400px; height: 50px">Местное радио</button></p>
-    </form>
-    <form action="team/">
-        <p><button style="border-radius: 5px; background-color: rgba(28,28,28,0); width: 400px; height: 50px">Команда гениев</button></p>
-    </form>
-    <form action="admin/">
-        <p><button style="border-radius: 5px; background-color: rgba(28,28,28,0); width: 400px; height: 50px">Личный кабинет</button></p>
-    </form>
+<div class="navbar">
+    <a href="/">Главная</a>
+    <a href="radio/">Местное радио</a>
+    <a href="team/">Команда гениев</a>
+    <div class="dropdown">
+        <button class="dropbtn">Балдежное меню</button>
+        <div class="dropdown-content">
+            <a href="/"><li>Главная</li></a>
+            <a href="radio/"><li>Местное радио</li></a>
+            <a href="team/"><li>Команда гениев</li></a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
