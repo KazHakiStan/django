@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>
-        {{ title }}
+        Регистрация
     </title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
     <style>
@@ -10,7 +11,6 @@
             overflow: hidden;
             background-color: #333;
             font-family: Arial, Helvetica, sans-serif;
-
             top: 0;
             width: 100%;
         }
@@ -73,38 +73,39 @@
 </head>
 <body bgcolor="#696969" background="/media/bg.jpg" style="background-attachment: fixed">
     <div class="navbar">
+        <a href="/">Главная</a>
         <div class="dropdown">
-            <button class="dropbtn">
-                Балдежное меню
+            <button class="dropbtn">Балдежное меню
             </button>
             <div class="dropdown-content">
-                <a href="admin/">
-                    Админка
+                <a href="/">
+                    Главная
                 </a>
-                <a href="radio">
+                <a href="/radio">
                     Местное радио
                 </a>
-                <a href="team">
+                <a href="/team">
                     Команда гениев
                 </a>
             </div>
         </div>
-        <a href="registration">
-            Балдежная регистрация
-        </a>
-        {% if user.is_authenticated %}
-        <a href="logout/">
-            Logout
-        </a>
-        {% else %}
-        <a href="login/">
-            Login
-        </a>
-        {% endif %}
     </div>
-<h1 style="text-align: center; color: antiquewhite">Привет</h1>
-
-    <p style="text-align: center; color: antiquewhite"> Это балдежный сайт специально для тмс22</p>
-
+    <div>
+        <form method="post" action="/registration/">
+            {% csrf_token %}
+                <div>
+                    Username:    {{ reg_form.username }}
+                </div>
+                <div>
+                    Email: {{ reg_form.email }}
+                </div>
+                <div>
+                    Password: {{ reg_form.password }}
+                </div>
+                <div>
+                    <input type="submit" value="Зарегистрироваться">
+                </div>
+        </form>
+    </div>
 </body>
 </html>

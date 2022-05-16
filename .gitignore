@@ -1,3 +1,5 @@
 
 venv/
 .idea/
+publication_app/__pycache__/
+publication_app/forms/__pycache__/
