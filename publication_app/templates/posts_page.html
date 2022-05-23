@@ -1,0 +1,16 @@
+{% extends 'main_page.html' %}
+
+{% block posts %}
+    {% for post in posts %}
+    <h6>Дата публикации:{{ post.created_at }}</h6>
+    <h4>{{ post.title }}</h4>
+    {% if post.image %}
+                <div>
+                    <img src="{{ post.image.url }}" alt="" width="500px" height="500px" style="display: block; margin: 0 auto">
+                </div>
+                {% endif %}
+    <p>{{ post.text }}</p>
+    <p>Понравилось:{{ post.post_likes }}</p>
+    <hr>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'main_page.html' %}
+{% block profile %}
+    This is profile page for {{ user.username }}
+    {% if profile.avatar %}
+    <div>
+        <img src="{{ profile.avatar.url }}" alt="" width="50px" height="50px" style="display: block; margin: 0 auto">
+    </div>
+    {% endif %}
+    <div>
+        {{ profile.bio }}
+    </div>
+{% endblock %}

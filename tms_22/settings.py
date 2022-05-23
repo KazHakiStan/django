@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'publication_app',
+    'loginsys_app',
 ]
 
 MIDDLEWARE = [

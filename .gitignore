@@ -3,3 +3,11 @@ venv/
 .idea/
 publication_app/__pycache__/
 publication_app/forms/__pycache__/
+loginsys_app/__pycache__/
+*.log
+*.pot
+*.pyc
+__pycache__
+.DS_Store
+
+.env

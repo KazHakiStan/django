@@ -1,14 +1,16 @@
 import random
 
-from django.contrib import messages
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages, auth
+
+from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from .forms.registration import RegistrationForm
-from .models import Post, People
+
+from .models import Post, People, Comments, Profile
+from .forms.forms import UpdateUserForm, UpdateProfileForm
 
 
 def music_page(request):
@@ -33,39 +35,31 @@ def main_page(request):
     return render(request, 'main_page.html', context)
 
 
-def registration_page(request):
+@login_required
+def profile_page(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-    context = {
-        'reg_form': RegistrationForm(),
-    }
-    return render(request, 'registration_page.html', context)
-
-
-def login_page(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f'You are now logged in as {username}.')
-                return redirect('/')
-            else:
-                messages.error(request, 'Invalid username or password')
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='users-profile')
         else:
-            messages.error(request, 'Invalid username or password')
-    form = AuthenticationForm()
-    return render(request=request, template_name="login_page.html", context={'login_form':form})
+            user_form = UpdateUserForm(instance=request.user)
+            profile_form = UpdateProfileForm(instance=request.user.profile)
+
+        return render(request, 'profile_page.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'profile_page.html')
 
 
-def logout_page(request):
-    logout(request)
-    messages.info(request, 'You have successfully logged out.')
-    return redirect('/')
+def posts_page(request):
+    return render(request, 'posts_page.html', {'posts': Post.objects.all(), 'username': auth.get_user(request).username})
+
+
+# def post_page(request, publication_app_post_id=1):
+#     context = {'post': Post.objects.get(id=publication_app_post_id), 'comments': Comments.objects.filter(comments_post_id=publication_app_post_id)}
+#     return render(request, 'post_page.html', context)
+
+

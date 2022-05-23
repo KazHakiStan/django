@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,38 +74,54 @@
 </head>
 <body bgcolor="#696969" background="/media/bg.jpg" style="background-attachment: fixed">
     <div class="navbar">
+        <a href="/">
+            Главная
+        </a>
         <div class="dropdown">
             <button class="dropbtn">
                 Балдежное меню
             </button>
             <div class="dropdown-content">
-                <a href="admin/">
+                <a href="/admin/">
                     Админка
                 </a>
-                <a href="radio">
+                <a href="/profile">
+                    Мой профиль
+                </a>
+                <a href="/radio">
                     Местное радио
                 </a>
-                <a href="team">
+                <a href="/team">
                     Команда гениев
                 </a>
             </div>
         </div>
-        <a href="registration">
-            Балдежная регистрация
+        <a href="/auth/registration/">
+            Я новенький
         </a>
-        {% if user.is_authenticated %}
-        <a href="logout/">
-            Logout
+        {% if user.username %}
+        <a href="/auth/logout/">
+            Выйти ({{ user.username }})
         </a>
         {% else %}
-        <a href="login/">
-            Login
+        <a href="/auth/login/">
+            Я уже смешарик
         </a>
         {% endif %}
     </div>
 <h1 style="text-align: center; color: antiquewhite">Привет</h1>
 
     <p style="text-align: center; color: antiquewhite"> Это балдежный сайт специально для тмс22</p>
+    {% if user.username %}
+        <p style="text-align: center; color: antiquewhite">
+            Вы вошли как {{ user.username }}
+        </p>
+    {% endif %}
 
+{% block posts %}{% endblock %}
+{% block login %}{% endblock %}
+{% block profile %}{% endblock %}
+{% block radio %}{% endblock %}
+{% block team %}{% endblock %}
 </body>
 </html>

@@ -23,7 +23,9 @@ from publication_app.views import main_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('publication_app.urls'), name='main_page')
+    path('auth/', include('loginsys_app.urls')),
+    path('', include('publication_app.urls'), name='main_page'),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
